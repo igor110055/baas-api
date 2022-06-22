@@ -1,0 +1,621 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JDB Card Application Form</title>
+<style>
+html {
+  -webkit-print-color-adjust: exact;
+}
+@font-face {
+	font-family: 'Firefly Sung';
+	font-style: normal;
+	font-weight: 400;
+	src: url('{{asset("public/fonts/fireflysung.ttf")}}') format('truetype');
+}
+.utf-8-font, h3 .utf-8-font, h3 {
+	font-family: Firefly Sung, DejaVu Sans, sans-serif;
+}
+span.utf-8-font {
+	display: inline-block;
+	line-height: 10px;
+	margin-top: 3px;
+}
+* {
+	margin: 0;
+	padding: 0;
+	max-width: 100%;
+}
+body, label, p {
+	font-size: 9px;
+	line-height: 11px;
+}
+.bound {
+	margin: 3px auto;
+	max-width: 780px;
+	width: 780px;
+	padding: 0px;
+	clear: both;
+}
+.jdb_logo {
+	max-width: 80px;
+}
+h2 {
+	text-align: center;
+	margin-left: 15px;
+	line-height: 19px;
+	font-size: 14px;
+	display: inline-block;
+	font-weight:normal;
+}
+h3 {
+	background: #ccc;
+	border: 1px solid #000;
+	padding: 2px 5px;
+	margin: 10px 0 5px;
+	font-size: 11px;
+}
+h4{font-weight:normal;}
+ul li {
+	list-style: none;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+input[type="text"] {
+	border: none;
+	border-bottom: 1px dotted #000;
+	max-width: 100%;
+	width: 90px;
+	font-size: 10px;
+	display: inline-block;
+	margin-top: 3px;
+	line-height: normal;
+}
+input[type="text"]:focus {
+	outline: none;
+	border: none;
+	border-bottom: 1px dotted #00C;
+}
+input[type="checkbox"] {
+	top:0px;
+	position: relative;
+	margin-right: 2px;
+	vertical-align: top;
+}
+td {
+	vertical-align: top;
+	overflow: hidden;
+}
+.col50 {
+	width: 50%;
+}
+label {
+	position: relative;
+	top: 1px;
+}
+.red-tx {
+	color: #f00;
+}
+
+.box-border td {
+	border: 1px solid #000;
+}
+.data-col {
+	display: inline-block;
+	margin-top: 2px;
+	margin-right: 5px;
+	width: 80px;
+}
+.data-col input.d-date, .data-col input.d-month {
+	width: 15px;
+	display: inline-block;
+}
+.data-col input.d-year {
+	width: 30px;
+	display: inline-block;
+}
+.ws_none, .ws_none td {
+	white-space: normal;
+}
+.of_lis strong {
+	font-size: 12px;
+	top: 4px;
+	position: relative;
+	float: left;
+	margin: 0 4px;
+}
+.of_lis li {
+	padding-left: 7px;
+	position: relative;
+}
+.of_lis li:before {
+	position: absolute;
+	left: 0;
+	top: 11px;
+	content: "";
+	background: #000;
+	height: 6px;
+	width: 6px;
+}
+.pd td {
+	padding: 5px;
+}
+.width100 {
+	width: 100px !important;
+}
+td.white-space, .white-space td {
+	white-space: nowrap;
+}
+.of_lis p {
+	padding-top: 6px;
+	left: 5px;
+	position: relative;
+}
+p {
+	padding-top: 3px;
+}
+ol {
+	padding-left: 15px;
+}
+.tx-center {
+	text-align: center;
+}
+.table-sec ul {
+	margin: 4px 0px 0px 0px;
+}
+.table-sec ul li {
+	list-style: none;
+	display: inline-block;
+}
+.table-form input[type="checkbox"] {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+.checkmark {
+	height: 17px;
+	width: 15px;
+	border: 2px solid#000 !important;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+.table-form .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid black;
+	border-width: 0 3px 3px 0;
+	transform: rotate(45deg);
+}
+.table-form {
+	display: inline-block;
+	position: relative;
+	padding-left: 13px;
+	margin-bottom:2px;
+	cursor: pointer;
+	width: 130px;
+	vertical-align: top;
+	min-height:20px;
+}
+.table-sec p {
+	padding: 0px;
+	margin: 2px 0px;
+	border-bottom: 1px solid #000;
+	line-height: 10px;
+}
+.table-sec p:last-child {
+	border: none;
+}
+.v-middle td {
+	vertical-align: middle;
+}
+.v-top {
+	vertical-align: top !important;
+}
+.bottom-sec p {
+	line-height: 10px;
+	font-size:8px;
+	border: none;
+}
+.footer {
+
+}
+.seal input[type="text"] {
+	border: none;
+	border-bottom: 1px dotted #000;
+	max-width: 100%;
+	width: 210px;
+}
+.seal {
+	width: 33%;
+	display:inline-block;
+	}
+.seal h4 {
+	font-size: 10px;
+}
+label.box-lab {
+	display: inline-block;
+	border: 1px solid #000;
+	padding:1px 5px;
+	font-size:9px;
+	line-height:10px;
+}
+.bor-none, .bor-none td {
+	border: none;
+}
+.inline {
+	display: inline-block;
+}
+.w100 {
+	width: 100% !important;
+	float: left;
+}
+.tx-center .utf-8-font {
+	width: 100%;
+	text-align: center;
+}
+.mg2{padding-left: 20px;}
+</style>
+</head>
+<body>
+<div class="bound">
+  <table cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td><table>
+            <tr>
+              <td width="200px"><img src="https://i.imgur.com/ayn0R9C.png" alt="JDB Card Application Form" class="jdb_logo"/></td>
+              <td style="vertical-align:bottom"><br />
+                <h2><span class="utf-8-font">开户申请书</span><br />
+APPLICATION FOR OPENNING ACCOUNT </h2></td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <td style="text-align:right;"><label style="float:right;"><span class="utf-8-font">分行</span>/Branch:
+                <input type="text" name="" style="float:right; margin-top:10px;" /></label></td>
+            </tr>
+          </table>
+          <table class="box-border tx-center pd" style="border-bottom: 2px dashed;">
+            <tr>
+              <td><span class="utf-8-font">签字式样</span> <strong>(Specimen signature)</strong> <br />
+                @if($data['img_sign']) <img src="{{$data['img_sign']}}" style="display:inline-block; height:50px; width:auto; max-width:none;margin-top: 5px;"  /> @else <img src="{{url('public/img/sign/sampleimage.png')}}" style="display:inline-block; height:50px;width:auto;max-width:none;margin-top: 5px;" /> @endif </td>
+              <td rowspan="4"><span class="utf-8-font">身份证/其他副本</span> <strong>(Copy ID Card/Other)</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><span class="utf-8-font">帳戶激活條款</span></td>
+            </tr>
+            <tr>
+              <td style="border-bottom: 3px dashed;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td style="text-align:left;"><span class="utf-8-font" style="display:inline-block;">账号/Account No:</span></td>
+            </tr>
+          </table>
+          <table style="margin-top:2px;">
+            <tr>
+              <td><span class="utf-8-font">本人/吾等</span> I/We:</td>
+              <td style="text-align:right;"><label style="display:inline-block; float:right;"><span class="utf-8-font">客户</span>ID Customer ID <input type="text" name="" style="border:1px solid #000 !important;" /></label>
+                </td>
+            </tr>
+          </table>
+          <br />
+          <table>
+            <tr>
+              <td><label><span class="utf-8-font">姓名</span>(1)/Name(1):</label>
+<!--                 <input type="text" class="utf-8-font"  name="" value="{{$data['name'] ?? ''}}" style="width: 140px;" />
+ -->                <span class="utf-8-font">${data.first_name} ${data.last_name}</span>
+                <label><span class="utf-8-font">出生日期</span> /Date of birth:</label>
+                <div class="data-col">
+                  ${data.dob}
+                </div>
+                <label><span class="utf-8-font">身份证/护照号码</span> ID/ Passport No:</label>
+                <input type="text" class="utf-8-font"  name="" value="${data.passport_id}" /></td>
+            </tr>
+            <tr>
+              <td><label><span class="utf-8-font">姓名</span>(2)/Name(2):</label>
+                <input type="text" name="" style="width: 140px;" />
+                <label><span class="utf-8-font">出生日期</span> /Date of birth:</label>
+                <div class="data-col">
+                  ${data.dob}
+                </div>
+                <label><span class="utf-8-font">身份证/护照号码</span> ID/ Passport No:</label>
+                <input type="text" name="" value="${data.passport_id}" /></td>
+            </tr>
+            <tr>
+              <td><label><span class="utf-8-font">现居地址</span>/Present Address:</label>
+               <!--  <input type="text" class="utf-8-font"  name="" value="{{$data['residing_place']??''}}" style="width:232px" /> -->
+               <span class="utf-8-font">城市</span>
+                <label><span class="utf-8-font">${data.address1}</span>/City</label>
+<!--                 <input type="text" class="utf-8-font"  name="" value="{{$data['residing_district']??''}}" />
+ -->                
+                <span class="utf-8-font">${data.city}</span>
+                <label><span class="utf-8-font">省份</span>/Province</label>
+<!--                 <input type="text" class="utf-8-font"  name="" value="{{$data['residing_province']??''}}" />
+ -->                
+                <span class="utf-8-font"></span>
+                <label><span class="utf-8-font">电话</span></label></td>
+            </tr>
+            <tr>
+              <td><label><span class="utf-8-font">号码</span>/Tel: </label>
+                <input type="text" name="" style="width:300px;" />
+                <label><span class="utf-8-font">传真</span>/Fax:</label>
+                <input type="text" name="" style="width:300px;" /></td>
+            </tr>
+            <tr>
+              <td><label><span class="utf-8-font">紧急联系人</span>/ Emergency Contact:</label>
+                <input type="text" name="" style="width:200px;" />
+                <label><span class="utf-8-font">手机号码</span>/Mobile:</label>
+                <input type="text" name="" value="${data.contactNumber}"/></td>
+            </tr>
+            <tr>
+              <td><label><span class="utf-8-font">电子邮箱</span>/E-Mail:</label>
+                <!-- <input type="text" class="utf-8-font"  name="" value="{{$data['user']['email'] ?? ''}}" style="width:615px" /></td> -->
+                <span class="utf-8-font">${data.email}</span>
+            </tr>
+            <tr>
+              <td style="margin:2px 0"><span class="utf-8-font">向JDB申请开立账户，特此附上本人/吾等所有必要的详细信息（附件）。</span><br />
+                Apply to open account with JDB and here are all my/our necessary details information (Attachment) </td>
+            </tr>
+          </table>
+          <table class="table-sec v-middle pd box-border" cellpadding="0" cellspacing="0">
+            <tr>
+              <td class="tx-center"><span class="utf-8-font">账户类别</span><br/>
+                Account Type </td>
+              <td colspan="2"><ul>
+                  <li><input type="checkbox" class="checkmark"/>
+                    <label class="table-form mg2">
+                      <span class="utf-8-font">个人/联名</span><br/>
+                      Personal/Joint </label>
+                      <input type="checkbox" class="checkmark"/>
+                    <label class="table-form mg2">
+                      <span class="utf-8-font">公司</span><br/>
+                      Company </label>
+                      <input type="checkbox" class="checkmark"/>
+                    <label class="table-form mg2">
+                      <span class="utf-8-font">合伙/独资经营</span><br/>
+                      Partnership/Sole Proprietor </label>
+                      <input type="checkbox" class="checkmark"/>
+                    <label class="table-form mg2">
+                      <span class="utf-8-font">使馆</span><br/>
+                      Embrassy </label>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <input type="checkbox" class="checkmark"/> 
+                    <label class="table-form mg2">
+                      <span class="utf-8-font">国有/合资企业</span> <br/>
+                      State Owned/Joint Venture Co; </label>
+                      <input type="checkbox" class="checkmark"/>
+                    <label class="table-form mg2" >
+                      <span class="utf-8-font">协会/非政府组织</span><br/>
+                      Associates/NGO </label>
+                      <input type="checkbox" class="checkmark"/>
+                    <label class="table-form mg2">
+                      <span class="utf-8-font">国际组织</span><br/>
+                      International Organization </label>
+                      <input type="checkbox" class="checkmark"/>
+                    <label class="table-form mg2">
+                      <span class="utf-8-font">其他</span><br/>
+                      Other </label>
+                  </li>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="tx-center"><span class="utf-8-font">业务类型</span><br/>
+                Type of Business </td>
+              <td width="45%" style="text-align:center;"><input type="text" name="" style="width:250px;"/>
+                <br />
+                <br />
+                <input type="text" name="" style="width:250px;" /></td>
+              <td width="45%"><p><span class="utf-8-font">营业执照/投资许可证号</span>:<br/>
+                  ERC/IL No: </p>
+                <p><span class="utf-8-font">签发日期</span><br/>
+                  Date of Issue: </p>
+                <p><span class="utf-8-font">签发地点</span><br/>
+                  Place of Issue </p></td>
+            </tr>
+            <tr>
+              <td class="tx-center"><span class="utf-8-font">账户类型&开户存款 <br />
+                水泥種類<br/>
+                </span> Type of Account & Initial Deposit(Amount) </td>
+              <td colspan="2"><table class="bor-none">
+                  <tr>
+                    <td><span class="utf-8-font"> 活期存款账户</span><br />
+                      Current Acct.<br /><br />
+                      <label class="box-lab"> <span class="utf-8-font">基普</span><br />
+                        LAK </label>
+                      <input type="text" name="" />
+                      <br />
+                      <label class="box-lab"> <span class="utf-8-font">美元</span><br />
+                        USD </label>
+                      <input type="text" name="" />
+                      <br />
+                      <label class="box-lab"> <span class="utf-8-font">泰铢</span><br />
+                        THB </label>
+                      <input type="text" name="" /></td>
+                    <td><span class="utf-8-font">活期存款账户</span><br />
+                      Current Acct.<br /><br />
+
+                      <label class="box-lab"> <span class="utf-8-font">基普</span><br />
+                        LAK </label>
+                      <input type="text" name="" />
+                      <br />
+                      <label class="box-lab"> <span class="utf-8-font">美元</span><br />
+                        USD </label>
+                      <input type="text" name="" value="" style="font-size: 30px;" />
+                      <br />
+                      <label class="box-lab"> <span class="utf-8-font">泰铢</span><br />
+                        THB </label>
+                      <input type="text" name="" /></td>
+                    <td><span class="utf-8-font">活期存款账户</span><br />
+                      Current Acct.<br /><br />
+
+                      <label class="box-lab"> <span class="utf-8-font">基普</span><br />
+                        LAK </label>
+                      <input type="text" name="" />
+                      <br />
+                      <label class="box-lab"> <span class="utf-8-font">美元</span><br />
+                        USD </label>
+                      <input type="text" name="" />
+                      <br />
+                      <label class="box-lab"> <span class="utf-8-font">泰铢</span><br />
+                        THB </label>
+                      <input type="text" name="" /></td>
+                  </tr>
+                </table></td>
+            </tr>
+            <tr>
+              <td class="tx-center"><span class="utf-8-font">参考凭证</span><br />
+                Reference Document(s) </td>
+              <td><table  cellpadding="0" cellspacing="0" style="border:none;">
+                  <tr>
+                    <td style="border:none;"><input type="checkbox" class="checkmark"/>
+                      <label class="table-form" for="resident" style=" display: inline;">
+                        
+                        <span class="utf-8-font">居民/Resident</span><br/>
+                        <span class="inline"><span class="utf-8-font">身份证/护照/户口簿</span></span>
+                        <input type="text" name=""/>
+                        <br />
+                        <span class="inline">Identify Card / Passport / Family Book</span>
+                        <input type="text" name=""/>
+                      </label></td>
+                  </tr>
+                  <tr>
+                    <td style="border:none; border-top:1px solid"> <input type="checkbox" class="checkmark"/>
+                      <label class="table-form" for="non_resident" style=" display: inline;">
+                       
+                        <span class="utf-8-font">非居民/Non Resident</span> <br />
+                        <span class="utf-8-font">护照/工作许可证/外国身份证</span><br />
+                        Passport/Working permit and Foreign ID </label></td>
+                  </tr>
+                  <tr>
+                    <td style="border:none; border-top:1px solid">
+                      <input type="checkbox" class="checkmark"/>
+                      <label class="table-form" for="article_of_association" style=" display: inline;">
+                        
+                        <span class="utf-8-font">组织章程/Article of Association</span> </label></td>
+                  </tr>
+                </table></td>
+              <td class="v-top" style="padding:0;"><table>
+                  <tr>
+                    <td>
+                      <input type="checkbox" class="checkmark"/>
+                      <label class="table-form" for="invesment_license" style="display: inline;">
+                        <span class="utf-8-font">投资许可证/Invesment License</span> </label></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" class="checkmark"/><label class="table-form" for="enterprise_registration"  style="display: inline;">
+                        <span class="utf-8-font">企业法人营业执照/Enterprise Registration License</span> </label></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="checkmark"/>
+                      <label class="table-form" for="tax_license"  style="display: inline;">
+                        <span class="utf-8-font">税务登记证/Tax License</span></label></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="checkmark"/>
+                      <label class="table-form" for="resolution_memorandum"  style="display: inline;">
+                        <span class="utf-8-font">开立账户的决议/协议备忘录<br />
+                        Resolution/Memorandum for Openning Acct. </span></label></td>
+                  </tr>
+                  <tr>
+                    <td><label><span class="utf-8-font">其他/other</span></label>
+                      <input type="text" /></td>
+                  </tr>
+                </table></td>
+            </tr>
+            <tr>
+              <td class="tx-center"><span class="utf-8-font">提交申请</span> Submission For  </td>
+              <td colspan="2" style="padding:0">
+              <table style="width:100%;" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="width:150px;">
+                      <label class="tx-center"><span class="utf-8-font"> ATM 卡<br />
+                      ATM CARD </span></label>
+                    <br />
+                    <input type="checkbox" style="display:inline-block;">
+                    <label class="table-form" for="premium" style="width:100%; display: inline; padding-left: 0px;">
+                      
+                      <span class="utf-8-font" style="display:inline-block;"> Premium </span>
+                      </label>       
+                      <input type="checkbox" style="display:inline-block;"><label>
+                        <span class="utf-8-font" style="display:inline-block;"> General</span>
+                      </label>            
+                    <br />
+                    <span class="utf-8-font">電話號碼:</span>
+                    <input type="text" name="" /></td>
+                    <td>
+                      <input type="checkbox" class="checkmark">
+                      <label class="table-form" for="visa_debit_card" style="display: inline-table;">
+                        <span class="utf-8-font">VISA 借记卡</span><br />
+                        VISA DEBIT CARD </label>
+                      <br />
+                      <span class="utf-8-font">沒有:</span>
+                      <input type="text" name="" /></td>
+                    <td>
+                      <input type="checkbox" class="checkmark">
+                      <label class="table-form" for="visa_debit_card" style="display: inline-table;">
+                        <span class="utf-8-font">VISA 借记卡</span><br />
+                        VISA DEBIT CARD </label>
+                      <br />
+                      <span class="utf-8-font">沒有:</span>
+                      <input type="text" name="" /></td>
+                    <td>
+                      <input type="checkbox" class="checkmark">
+                      <label class="table-form" for="edc" style="display: inline-table;">
+                        EDC<br />
+                        EDC </label>
+                      <br />
+                      <span class="utf-8-font">沒有:</span>
+                      <input type="text" name="" /></td>
+                  </tr>
+                </table></td>
+            </tr>
+            <tr>
+            <td colspan="3">
+              <div class="bottom-sec">
+            <p><span class="utf-8-font">本人/吾等特此证明， 据本人/吾等所知及所信， 上述所提供的信息均真实且完整。 本人/吾等确认本人/吾等已经阅读、理解并同意联合发展银行（JDB）</span></p>
+            <p><span class="utf-8-font">就本人/吾等所选择的账户而规定的条款和条件。 且本人/吾等有义务接受银行政策所作的任何更改， 而无须另行通知。</span></p>
+            <p>I/We hereby certify that the above information given is true and complete to the best of my/our knowledge. I/We confirm that I/We have read, understood and
+              agree with the terms and conditions made available to me/us by Joint Development Bank for the account chosen by me/us. I/We am/are also bound to accept any
+              changes made by the bank's policies without any further notice whatsover. </p>
+          </div><br />
+          <div class="">
+            <div class="seal">
+              <input type="text" name="" />
+              <h4><span class="utf-8-font">账户持有者签名/盖章 Account Holder's</span><br/>
+                Signature(s)/Seal </h4>
+            </div>
+            <div class="seal">
+              <input type="text" name="" />
+              <h4><span class="utf-8-font">职员/Staff</span></h4>
+            </div>
+            <div class="seal">
+              <input type="text" name="" />
+              <h4><span class="utf-8-font">获授权者/Authorized Person</span></h4>
+            </div>
+          </div>
+          </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

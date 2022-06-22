@@ -1,0 +1,258 @@
+
+@font-face {
+	font-family: 'Firefly Sung';
+	font-style: normal;
+	font-weight: 400;
+	src: url('{{asset("public/fonts/fireflysung.ttf")}}') format('truetype');
+}
+.utf-8-font, h3 .utf-8-font, h3 {
+	font-family: Firefly Sung, DejaVu Sans, sans-serif;
+}
+span.utf-8-font {
+	display: inline-block;
+	line-height: 10px;
+	margin-top: 3px;
+}
+* {
+	margin: 0;
+	padding: 0;
+	max-width: 100%;
+}
+body, label, p {
+	font-size: 9px;
+	line-height: 11px;
+}
+.bound {
+	margin: 3px auto;
+	max-width: 780px;
+	width: 780px;
+	padding: 0px;
+	clear: both;
+}
+.jdb_logo {
+	max-width: 80px;
+}
+h2 {
+	text-align: center;
+	margin-left: 15px;
+	line-height: 19px;
+	font-size: 14px;
+	display: inline-block;
+	font-weight:normal;
+}
+h3 {
+	background: #ccc;
+	border: 1px solid #000;
+	padding: 2px 5px;
+	margin: 10px 0 5px;
+	font-size: 11px;
+}
+h4{font-weight:normal;}
+ul li {
+	list-style: none;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+input[type="text"] {
+	border: none;
+	border-bottom: 1px dotted #000;
+	max-width: 100%;
+	width: 90px;
+	font-size: 10px;
+	display: inline-block;
+	margin-top: 3px;
+	line-height: normal;
+}
+input[type="text"]:focus {
+	outline: none;
+	border: none;
+	border-bottom: 1px dotted #00C;
+}
+input[type="checkbox"] {
+	top:0px;
+	position: relative;
+	margin-right: 2px;
+	vertical-align: top;
+}
+td {
+	vertical-align: top;
+	overflow: hidden;
+}
+.col50 {
+	width: 50%;
+}
+label {
+	position: relative;
+	top: 1px;
+}
+.red-tx {
+	color: #f00;
+}
+.box-border td {
+	border: 1px solid #000;
+}
+.data-col {
+	display: inline-block;
+	margin-top: 2px;
+	margin-right: 5px;
+	width: 80px;
+}
+.data-col input.d-date, .data-col input.d-month {
+	width: 15px;
+	display: inline-block;
+}
+.data-col input.d-year {
+	width: 30px;
+	display: inline-block;
+}
+.ws_none, .ws_none td {
+	white-space: normal;
+}
+.of_lis strong {
+	font-size: 12px;
+	top: 4px;
+	position: relative;
+	float: left;
+	margin: 0 4px;
+}
+.of_lis li {
+	padding-left: 7px;
+	position: relative;
+}
+.of_lis li:before {
+	position: absolute;
+	left: 0;
+	top: 11px;
+	content: "";
+	background: #000;
+	height: 6px;
+	width: 6px;
+}
+.pd td {
+	padding: 5px;
+}
+.width100 {
+	width: 100px !important;
+}
+td.white-space, .white-space td {
+	white-space: nowrap;
+}
+.of_lis p {
+	padding-top: 6px;
+	left: 5px;
+	position: relative;
+}
+p {
+	padding-top: 3px;
+}
+ol {
+	padding-left: 15px;
+}
+.tx-center {
+	text-align: center;
+}
+.table-sec ul {
+	margin: 4px 0px 0px 0px;
+}
+.table-sec ul li {
+	list-style: none;
+	display: inline-block;
+}
+.table-form input[type="checkbox"] {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+.checkmark {
+	height: 25px;
+	width: 15px;
+	border: 2px solid#000 !important;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+.table-form .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid black;
+	border-width: 0 3px 3px 0;
+	transform: rotate(45deg);
+}
+.table-form {
+	display: inline-block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom:2px;
+	cursor: pointer;
+	width: 130px;
+	vertical-align: top;
+	min-height:20px;
+}
+.table-sec p {
+	padding: 0px;
+	margin: 2px 0px;
+	border-bottom: 1px solid #000;
+	line-height: 10px;
+}
+.table-sec p:last-child {
+	border: none;
+}
+.v-middle td {
+	vertical-align: middle;
+}
+.v-top {
+	vertical-align: top !important;
+}
+.bottom-sec p {
+	line-height: 10px;
+	font-size:8px;
+	border: none;
+}
+.footer {
+
+}
+.seal input[type="text"] {
+	border: none;
+	border-bottom: 1px dotted #000;
+	max-width: 100%;
+	width: 210px;
+}
+.seal {
+	width: 33%;
+	display:inline-block;
+	}
+.seal h4 {
+	font-size: 10px;
+}
+label.box-lab {
+	display: inline-block;
+	border: 1px solid #000;
+	padding:1px 5px;
+	font-size:9px;
+	line-height:10px;
+}
+.bor-none, .bor-none td {
+	border: none;
+}
+.inline {
+	display: inline-block;
+}
+.w100 {
+	width: 100% !important;
+	float: left;
+}
+.tx-center .utf-8-font {
+	width: 100%;
+	text-align: center;
+}
