@@ -2011,11 +2011,7 @@ async function createotp(params) {
   };
   console.log("creater user");
   console.log("create-user ==>", params.email);
-  await sendOtpMail(
-    params.email,
-    Otp,
-    `Welcome to BaaS. Use code ${Otp} to verify your email`
-  );
+  await sendOtpMail(params.email, Otp);
   console.log("mail sent");
   let mail = { message: `Verification Mail Sent Successfully`, status: 200 };
   return mail;
@@ -2038,7 +2034,7 @@ async function createnew(params) {
   }
 }
 
-async function sendOtpMail(email, OTP, text) {
+async function sendOtpMail(email, OTP) {
   const mg = mailgun({
     apiKey: process.env.MAILGUN_API_KEY,
     domain: process.env.MAILGUN_DOMAIN,
@@ -2057,18 +2053,14 @@ async function sendOtpMail(email, OTP, text) {
 }
 
 async function sendForgotPasswordEmail(params) {
-  const user = await db.User.findOne({ where: { email: params.email } });
+  const { email } = params;
+  const user = await db.User.findOne({ where: { email } });
 
   if (!user) {
-    throw { message: `${params.email} is not registered`, status: 404 };
+    throw { message: `${email} is not registered`, status: 404 };
   }
 
-  user = await db.User.findOne({ where: { email: params.email } });
-
   let Otp = Math.floor(1000 + Math.random() * 9000);
-
-  user.OTP = Otp;
-  await user.save();
 
   const mg = mailgun({
     apiKey: process.env.MAILGUN_API_KEY,
@@ -2085,6 +2077,8 @@ async function sendForgotPasswordEmail(params) {
   mg.messages().send(data, (error, body) => {
     console.log("Message sent!\nBody =>", body);
   });
+  user.OTP = Otp;
+  await user.save();
 }
 
 async function changePassword(params) {
