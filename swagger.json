@@ -97,6 +97,33 @@
                     }
                 }
             },
+            "/users/sendForgotPasswordEmail": {
+                "post": {
+                    "tags": [
+                        "Users"
+                    ],
+                    "description": "Create new user in system",
+                    "parameters": [{
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/otp"
+                        }
+                    }],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "New user is created",
+                            "schema": {
+                                "$ref": "#/definitions/otp"
+                            }
+                        }
+                    }
+                }
+            },
         "/users/login": {
             "post": {
                 "tags": [
@@ -124,6 +151,34 @@
                 }
             }
         },
+        "/users/changePassword": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Create new user in system",
+                "parameters": [{
+                    "name": "user",
+                    "in": "body",
+                    "description": "User that we want to create",
+                    "schema": {
+                        "$ref": "#/definitions/changePassword"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user is created",
+                        "schema": {
+                            "$ref": "#/definitions/changePassword"
+                        }
+                    }
+                }
+            }
+        },
+     
         "/users/loginWithAddress": {
             "post": {
                 "tags": [
@@ -1708,6 +1763,24 @@
         },
 
         "register": {
+            "required": [
+                "email",
+                "password",
+                "OTP"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "OTP": {
+                    "type": "number"
+                }
+            }
+        },
+        "changePassword": {
             "required": [
                 "email",
                 "password",

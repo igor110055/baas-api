@@ -2056,7 +2056,7 @@ async function sendOtpMail(email, OTP, text) {
   });
 }
 
-async function sendForgotPasswordEmail(email) {
+async function sendForgotPasswordEmail(params) {
   const user = await db.User.findOne({ where: { email: params.email } });
 
   if (!user) {

@@ -75,6 +75,8 @@ router.post("/eu/import-screening/:token/:userAddress", getEuScreening);
 router.get("/testCardLoad", loadCard);
 router.put("/updateaffiliate/:userAddress", updateaffiliate);
 router.post("/send-otp", registerotpSchema, send_otp);
+router.post("/sendForgotPasswordEmail", sendForgotPasswordEmail);
+router.post("/changePassword",  changePassword);
 
 function loadCard(req, res, next) {
   userService
@@ -729,6 +731,27 @@ function register(req, res, next) {
       next;
   });
 }
+function changePassword(req, res, next) {
+  userService
+    .changePassword(req.body)
+    .then((user) => {
+      if (!user.status) {
+          console.log(user, 'user');
+          res.send(user);
+      } else {
+          res.status(200).send(user);
+      }
+  })
+  .catch((err) => {
+      // console.log(err);
+      if (!err.status) {
+          res.send(err);
+      } else {
+          res.status(400).send(err);
+      }
+      next;
+  });
+}
 function send_otp(req, res, next) {
   userService
     .createotp(req.body)
@@ -1317,5 +1340,26 @@ function updateaffiliate(req, res, next) {
       }
       next;
     });
+}
+function sendForgotPasswordEmail(req, res, next) {
+  userService
+    .sendForgotPasswordEmail(req.body)
+    .then((user) => {
+      if (!user.status) {
+          console.log(user, 'user');
+          res.send(user);
+      } else {
+          res.status(200).send(user);
+      }
+  })
+  .catch((err) => {
+      // console.log(err);
+      if (!err.status) {
+          res.send(err);
+      } else {
+          res.status(400).send(err);
+      }
+      next;
+  });
 }
 module.exports = router;
