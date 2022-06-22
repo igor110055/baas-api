@@ -11,6 +11,8 @@ const { _ } = require("underscore");
 const { BalanceOF } = require("../updatebalance/updatetransactionbalance");
 const excel = require("exceljs");
 const mailgun = require("mailgun-js");
+require("dotenv").config();
+
 const {
   WBTCBalance,
   WETHBalance,
@@ -30,8 +32,6 @@ const {
   allTokenBalance,
 } = require("../updatebalance/prvwallettransaction");
 const { NULL } = require("mysql2/lib/constants/types");
-
-
 
 module.exports = {
   authenticate,
@@ -82,7 +82,8 @@ module.exports = {
   updateaffiliate,
   createotp,
   createnew,
-  sendToMailnew
+  changePassword,
+  sendForgotPasswordEmail,
 };
 
 async function getDepositAddress() {
@@ -162,7 +163,6 @@ function exportTransactions(status) {
       console.log(err);
     });
 }
-
 
 async function createCardPayment(params) {
   console.log(params, "body");
@@ -1360,7 +1360,7 @@ async function listCardPaymentsByDate(status, today, yesterday, userAddress) {
   if (await db.LoadCard.scope("withHash").findAll({ where: query })) {
     return await db.LoadCard.scope("withHash").findAll({
       order: [["createdAt", "DESC"]],
-      where: query
+      where: query,
     });
   }
 }
@@ -1387,30 +1387,27 @@ async function getById(userAddress) {
 }
 
 async function create(params) {
-  
-
   if (!validator.validate(params.email)) {
     throw { message: params.email + '" is not a valid email.', status: 409 };
   }
 
   const existingUser = await db.User.findOne({ email: params.email });
 
- if (existingUser.password != null)
- throw {
-  message: 'Email "' + params.email + '" is already registered try to login',
-  status: 409,
-};
+  if (existingUser.password != null)
+    throw {
+      message:
+        'Email "' + params.email + '" is already registered try to login',
+      status: 409,
+    };
   const otpUser = await db.User.findOne({ email: params.email });
   if (!otpUser) throw { message: "User OTP not found" };
- 
+
   //if (otpUser.OTP != params.OTP) throw { message: "Incorrect Otp" };
- 
 
   // hash password
   // if (params.password) {
   //   params.password = await bcrypt.hash(params.password, 10);
   // }
-
 
   let newUser = {
     password: params.password,
@@ -1419,7 +1416,7 @@ async function create(params) {
   await existingUser.save();
   // save user
   console.log("creater user");
-  
+
   let mail = { message: `registration successfull`, status: 200 };
   return mail;
 }
@@ -1489,7 +1486,7 @@ async function updateUserKyc(userAddress, data) {
     throw { message: `${userAddress} is not found`, status: 404 };
   }
 
-  if(data.hasOwnProperty('staking') || data.hasOwnProperty('stakeapprove')){
+  if (data.hasOwnProperty("staking") || data.hasOwnProperty("stakeapprove")) {
     data.stakedate = new Date().toUTCString();
     console.log(data.stakedate);
   }
@@ -1637,10 +1634,9 @@ async function getUser(userAddress) {
   return user;
 }
 
-
 async function getUserDetails(userAddress) {
   const user = await db.User.scope("withHash").findAll({});
- 
+
   return user;
 }
 
@@ -1967,16 +1963,14 @@ async function updateaffiliate(userAddress, params) {
   if (!user) {
     return { message: `${userAddress} is not registered`, status: 404 };
   }
-  
- 
-    const newData = {
-      affiliate: params.affiliate,
-    };
 
-    console.log(user.userAddress);
-    Object.assign(user, newData);
-    await user.save();
-  
+  const newData = {
+    affiliate: params.affiliate,
+  };
+
+  console.log(user.userAddress);
+  Object.assign(user, newData);
+  await user.save();
 
   let resultUserDb = await user.get();
   let resultUser = {
@@ -1989,44 +1983,50 @@ async function createotp(params) {
   if (!validator.validate(params.email)) {
     throw { message: params.email + '" is not a valid email.', status: 409 };
   }
-  const existingUser = await db.User.findOne({ where: { email: params.email } });
+  const existingUser = await db.User.findOne({
+    where: { email: params.email },
+  });
   let Otp = Math.floor(1000 + Math.random() * 9000);
   const email = params.email;
   if (existingUser) {
     existingUser.OTP = Otp;
     await existingUser.save();
-   } else {
+  } else {
     const newotp = {
-     email,
-     OTP: Otp,
-     role: `user`,
-     role_id: 3
+      email,
+      OTP: Otp,
+      role: `user`,
+      role_id: 3,
     };
     const otp = new db.User(newotp);
-  await otp.save(); 
-}
+    await otp.save();
+  }
   // save user
   //await db.User.create(newUser);
   console.log("creater user");
-  
+
   let token = {
     userId: existingUser.email,
     token: `${crypto.randomBytes(32).toString("hex")}`,
   };
   console.log("creater user");
-  console.log(params.email);
-  await sendOtpMail(params.email, Otp);
+  console.log("create-user ==>", params.email);
+  await sendOtpMail(
+    params.email,
+    Otp,
+    `Welcome to BaaS. Use code ${Otp} to verify your email`
+  );
   console.log("mail sent");
   let mail = { message: `Verification Mail Sent Successfully`, status: 200 };
   return mail;
 }
 async function createnew(params) {
-  const user = await db.User.findOne({ where: { email:params.email } });
-  if(user.OTP !== params.OTP){
-    return { message:"otp incorrect"}
-  }else if(user.password !== null){
-    return {message:"email already registered try to login"}
-  }else{
+  const user = await db.User.findOne({ where: { email: params.email } });
+  if (user.OTP !== params.OTP) {
+    return { message: "otp incorrect" };
+  } else if (user.password !== null) {
+    return { message: "email already registered try to login" };
+  } else {
     params.password = await bcrypt.hash(params.password, 10);
 
     const result = await db.User.update(
@@ -2034,45 +2034,71 @@ async function createnew(params) {
       { where: { email: params.email } }
     );
     let mails = { message: `registration successfull`, status: 200 };
-  return mails;
+    return mails;
   }
 }
 
-async function sendOtpMail(email, OTP) {
-console.log(email);
-const mg = mailgun({
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN,
-}); 
+async function sendOtpMail(email, OTP, text) {
+  const mg = mailgun({
+    apiKey: process.env.MAILGUN_API_KEY,
+    domain: process.env.MAILGUN_DOMAIN,
+  });
 
-const data = {
-  from: `No-Reply <${process.env.MAILGUN_EMAIL}>`,
-  to: email,
-  subject: "Welcome to BAAS",
-  text: `Welcome to BaaS. Use code ${OTP} to verify your email`,
-};
+  const data = {
+    from: `No-Reply <${process.env.MAILGUN_EMAIL}>`,
+    to: email,
+    subject: "Welcome to BAAS",
+    text: `Welcome to BaaS. Use code ${OTP} to verify your email`,
+  };
 
-mg.messages().send(data, (error, body) => {
-  console.log("Message sent!\nBody =>", body);
-});
+  mg.messages().send(data, (error, body) => {
+    console.log("Message sent!\nBody =>", body);
+  });
 }
-async function sendToMailnew(params) {
-  if (!(await db.User.findOne({ where: { email: params.email } }))) {
+
+async function sendForgotPasswordEmail(email) {
+  const user = await db.User.findOne({ where: { email: params.email } });
+
+  if (!user) {
     throw { message: `${params.email} is not registered`, status: 404 };
   }
-  let url = `http://localhost:5000`;
-  const user = await db.User.findOne({ where: { email: params.email } });
-  // validate
-  // console.log(user.email)
-  let token = {
-    userId: user.email,
-    token: `${crypto.randomBytes(32).toString("hex")}/${user.email}`,
+
+  user = await db.User.findOne({ where: { email: params.email } });
+
+  let Otp = Math.floor(1000 + Math.random() * 9000);
+
+  user.OTP = Otp;
+  await user.save();
+
+  const mg = mailgun({
+    apiKey: process.env.MAILGUN_API_KEY,
+    domain: process.env.MAILGUN_DOMAIN,
+  });
+
+  const data = {
+    from: `No-Reply <${process.env.MAILGUN_EMAIL}>`,
+    to: email,
+    subject: "Reset Password",
+    text: `Dear User,\nUse code ${Otp} to reset your email`,
   };
-  // console.log(token)
-  const link = `${url}/password-reset?id=${user.id}&email=${token.token}`;
-  await sendMailreset(params.email, "OTP for Password reset",);
-  let mail = { message: `Mail Sent Successfully`, status: 200 };
-  return mail;
-  // copy params to user and save
+
+  mg.messages().send(data, (error, body) => {
+    console.log("Message sent!\nBody =>", body);
+  });
 }
 
+async function changePassword(params) {
+  const user = await db.User.findOne({ where: { email: params.email } });
+  if (user.OTP !== params.OTP) {
+    return { message: "otp incorrect" };
+  } else {
+    params.password = await bcrypt.hash(params.password, 10);
+
+    const result = await db.User.update(
+      { password: params.password },
+      { where: { email: params.email } }
+    );
+    let mails = { message: `Password reset successfull`, status: 200 };
+    return mails;
+  }
+}
