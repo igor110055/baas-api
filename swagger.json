@@ -10,7 +10,7 @@
         }
     },
   
-    "host": "backend.paymentplanet.co/",
+    "host": "backend.paymentplanet.co/api/",
     "basePath": "",
     "tags": [{
             "name": "Users",
