@@ -1,2668 +1,2463 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "Baas Backend",
-        "description": "Node JS Backend V0.1",
-        "license": {
-            "name": "MIT",
-            "url": "https://opensource.org/licenses/MIT"
-        }
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Baas Backend",
+    "description": "Node JS Backend V0.1",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+
+  "host": "localhost:5000",
+  "basePath": "",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
     },
-  
-    "host": "backend.paymentplanet.co/api/",
-    "basePath": "",
-    "tags": [{
-            "name": "Users",
-            "description": "API for users in the system"
+    {
+      "name": "Admin",
+      "description": "API for admin in the system"
+    },
+    {
+      "name": "SuperAdmin",
+      "description": "API for superadmin in the system"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/users/register": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/register"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/register"
+            }
+          }
+        }
+      }
+    },
+
+    "/users/send-otp": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/otp"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/otp"
+            }
+          }
+        }
+      }
+    },
+    "/users/sendForgotPasswordEmail": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/otp"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/otp"
+            }
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        }
+      }
+    },
+    "/users/changePassword": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/changePassword"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/changePassword"
+            }
+          }
+        }
+      }
+    },
+
+    "/users/loginWithAddress": {
+      "post": {
+        "tags": ["Users"],
+        "description": "login user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/loginWithAddress"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        }
+      }
+    },
+    "/users/cardPayment/{userAddress}": {
+      "post": {
+        "tags": ["Users"],
+        "description": "card Payment",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "card status",
+            "schema": {
+              "$ref": "#/definitions/cardPayment"
+            }
+          },
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "userAddress"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        }
+      }
+    },
+    "/users/forgotPasswordLink": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Forgot Password Link",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Forgot Password Link",
+            "schema": {
+              "$ref": "#/definitions/sendEmailLink"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Forgot Password Link Sent",
+            "schema": {
+              "$ref": "#/definitions/sendEmailLink"
+            }
+          }
+        }
+      }
+    },
+    "/users/getOne/{userAddress}": {
+      "parameters": [
+        {
+          "name": "userAddress",
+          "in": "path",
+          "required": true,
+          "description": "userAddress of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/getBSCOne/{userAddress}": {
+      "parameters": [
+        {
+          "name": "userAddress",
+          "in": "path",
+          "required": true,
+          "description": "userAddress of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/GetBSCDetails"
+            }
+          }
+        }
+      }
+    },
+    "/users/forgotPassword/{email}": {
+      "parameters": [
+        {
+          "name": "email",
+          "in": "path",
+          "required": true,
+          "description": "Email of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/forgot_password"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/forgot_password"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateUser/{uuid}": {
+      "parameters": [
+        {
+          "name": "uuid",
+          "in": "path",
+          "required": true,
+          "description": "uuid of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "post": {
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/partner/{partnerName}": {
+      "parameters": [
+        {
+          "name": "partnerName",
+          "in": "path",
+          "required": true,
+          "description": "partner name",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Partner"],
+        "description": "get partner by name",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Partners list",
+            "schema": {
+              "$ref": "#/definitions/partners"
+            }
+          }
+        }
+      }
+    },
+    "/admin/updateUserByAdmin/{uuid}": {
+      "put": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "description": "User with new values updated by uuid",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "description": "uuid of user that we want to find",
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/verifyCard/{userAddress}": {
+      "put": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Users"],
+        "description": "verify card by card number",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "required": true,
+            "description": "userAddress of admin that we want to find",
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Please fill required fields!",
+            "schema": {
+              "$ref": "#/definitions/verifyCard"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Card Found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/admin/register": {
+      "post": {
+        "tags": ["Admin"],
+        "description": "Create new Admin in system",
+        "parameters": [
+          {
+            "name": "admin",
+            "in": "body",
+            "description": "Admin that we want to create",
+            "schema": {
+              "$ref": "#/definitions/register"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New Admin is created",
+            "schema": {
+              "$ref": "#/definitions/register"
+            }
+          }
+        }
+      }
+    },
+    "/admin/addUserByPass": {
+      "post": {
+        "tags": ["Admin"],
+        "description": "Create new User in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Admin that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New User is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/admin/login": {
+      "post": {
+        "tags": ["Admin"],
+        "description": "Create new admin in system",
+        "parameters": [
+          {
+            "name": "admin",
+            "in": "body",
+            "description": "Admin that we want to create",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New admin is created",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        }
+      }
+    },
+    "/admin/forgotPasswordLink": {
+      "post": {
+        "tags": ["Admin"],
+        "description": "Forgot Password Link",
+        "parameters": [
+          {
+            "name": "admin",
+            "in": "body",
+            "description": "Forgot Password Link",
+            "schema": {
+              "$ref": "#/definitions/sendEmailLink"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Forgot Password Link Sent",
+            "schema": {
+              "$ref": "#/definitions/sendEmailLink"
+            }
+          }
+        }
+      }
+    },
+    "/admin/getAllPartners": {
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Partner"],
+        "description": "get all partners",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Partners list",
+            "schema": {
+              "$ref": "#/definitions/partners"
+            }
+          }
+        }
+      }
+    },
+    "/admin/partnerById/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "partner ID",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Partner"],
+        "description": "get partner by id",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Partners list",
+            "schema": {
+              "$ref": "#/definitions/partners"
+            }
+          }
+        }
+      }
+    },
+    "/admin/createPartner": {
+      "parameters": [
+        {
+          "name": "partner",
+          "in": "body",
+          "description": "Partner with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/partner"
+          }
+        }
+      ],
+      "post": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Partner"],
+        "description": "create new partner",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Partners list",
+            "schema": {
+              "$ref": "#/definitions/partners"
+            }
+          }
+        }
+      }
+    },
+    "/admin/updatePartner/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "partner ID",
+          "type": "string"
         },
         {
-            "name": "Admin",
-            "description": "API for admin in the system"
+          "name": "partner",
+          "in": "body",
+          "description": "Partner with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/partner"
+          }
+        }
+      ],
+      "put": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Partner"],
+        "description": "update  partner",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "updated partner",
+            "schema": {
+              "$ref": "#/definitions/partners"
+            }
+          }
+        }
+      }
+    },
+    "/admin/deletePartner/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "partner ID",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Partner"],
+        "description": "delete partner",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "deleted successfully",
+            "schema": {
+              "$ref": "#/definitions/partners"
+            }
+          }
+        }
+      }
+    },
+    "/admin/getAllAdmins": {
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "produces": ["application/json"]
+      }
+    },
+    "/admin/getAllUsers": {
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "produces": ["application/json"]
+      }
+    },
+    "/admin/cardapplyAndWhitelist/{userAddress}": {
+      "parameters": [
+        {
+          "name": "userAddress",
+          "in": "path",
+          "required": true,
+          "description": "Email of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "Card applied",
+            "schema": {
+              "$ref": "#/definitions/cardApplied"
+            }
+          }
+        }
+      }
+    },
+    "/admin/getOne/{email}": {
+      "parameters": [
+        {
+          "name": "email",
+          "in": "path",
+          "required": true,
+          "description": "Email of admin that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "Admin is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/admin/updateBSCDetails/{userAddress}": {
+      "parameters": [
+        {
+          "name": "userAddress",
+          "in": "path",
+          "required": true,
+          "description": "userAddress of admin that we want to find",
+          "type": "string"
         },
         {
-            "name": "SuperAdmin",
-            "description": "API for superadmin in the system"
+          "name": "admin",
+          "in": "body",
+          "description": "Admin with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/BSCDetails"
+          }
         }
-    ],
-    "schemes": [
-        "http"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "securityDefinitions": {
-        "Bearer": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header"
+      ],
+      "put": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "Admin is found",
+            "schema": {
+              "$ref": "#/definitions/BSCDetails"
+            }
+          }
         }
+      }
     },
-    "paths": {
-        "/users/register": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Create new user in system",
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "User that we want to create",
-                    "schema": {
-                        "$ref": "#/definitions/register"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New user is created",
-                        "schema": {
-                            "$ref": "#/definitions/register"
-                        }
-                    }
-                }
-            }
-        },
-     
-            "/users/send-otp": {
-                "post": {
-                    "tags": [
-                        "Users"
-                    ],
-                    "description": "Create new user in system",
-                    "parameters": [{
-                        "name": "user",
-                        "in": "body",
-                        "description": "User that we want to create",
-                        "schema": {
-                            "$ref": "#/definitions/otp"
-                        }
-                    }],
-                    "produces": [
-                        "application/json"
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "New user is created",
-                            "schema": {
-                                "$ref": "#/definitions/otp"
-                            }
-                        }
-                    }
-                }
-            },
-            "/users/sendForgotPasswordEmail": {
-                "post": {
-                    "tags": [
-                        "Users"
-                    ],
-                    "description": "Create new user in system",
-                    "parameters": [{
-                        "name": "user",
-                        "in": "body",
-                        "description": "User that we want to create",
-                        "schema": {
-                            "$ref": "#/definitions/otp"
-                        }
-                    }],
-                    "produces": [
-                        "application/json"
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "New user is created",
-                            "schema": {
-                                "$ref": "#/definitions/otp"
-                            }
-                        }
-                    }
-                }
-            },
-        "/users/login": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Create new user in system",
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "User that we want to create",
-                    "schema": {
-                        "$ref": "#/definitions/login"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New user is created",
-                        "schema": {
-                            "$ref": "#/definitions/login"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/changePassword": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Create new user in system",
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "User that we want to create",
-                    "schema": {
-                        "$ref": "#/definitions/changePassword"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New user is created",
-                        "schema": {
-                            "$ref": "#/definitions/changePassword"
-                        }
-                    }
-                }
-            }
-        },
-     
-        "/users/loginWithAddress": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "login user in system",
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "User that we want to create",
-                    "schema": {
-                        "$ref": "#/definitions/loginWithAddress"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New user is created",
-                        "schema": {
-                            "$ref": "#/definitions/login"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/cardPayment/{userAddress}": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "card Payment",
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "card status",
-                    "schema": {
-                        "$ref": "#/definitions/cardPayment"
-                    }
-                },{
-                    "name": "userAddress",
-                    "in": "path",
-                    "description": "userAddress"
-                    
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New user is created",
-                        "schema": {
-                            "$ref": "#/definitions/login"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/forgotPasswordLink": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Forgot Password Link",
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "Forgot Password Link",
-                    "schema": {
-                        "$ref": "#/definitions/sendEmailLink"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Forgot Password Link Sent",
-                        "schema": {
-                            "$ref": "#/definitions/sendEmailLink"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/getOne/{userAddress}": {
-            "parameters": [{
-                "name": "userAddress",
-                "in": "path",
-                "required": true,
-                "description": "userAddress of user that we want to find",
-                "type": "string"
-            }],
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Users"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User is found",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/getBSCOne/{userAddress}": {
-            "parameters": [{
-                "name": "userAddress",
-                "in": "path",
-                "required": true,
-                "description": "userAddress of user that we want to find",
-                "type": "string"
-            }],
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Users"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User is found",
-                        "schema": {
-                            "$ref": "#/definitions/GetBSCDetails"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/forgotPassword/{email}": {
-            "parameters": [{
-                "name": "email",
-                "in": "path",
-                "required": true,
-                "description": "Email of user that we want to find",
-                "type": "string"
-            }],
-            "put": {
-                "tags": [
-                    "Users"
-                ],
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "User with new values of properties",
-                    "schema": {
-                        "$ref": "#/definitions/forgot_password"
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "User is updated",
-                        "schema": {
-                            "$ref": "#/definitions/forgot_password"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateUser/{uuid}": {
-            "parameters": [{
-                "name": "uuid",
-                "in": "path",
-                "required": true,
-                "description": "uuid of user that we want to find",
-                "type": "string"
-            }],
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "User with new values of properties",
-                    "schema": {
-                        "$ref": "#/definitions/User"
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "User is updated",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/partner/{partnerName}": {
-            "parameters": [{
-                "name": "partnerName",
-                "in": "path",
-                "required": true,
-                "description": "partner name",
-                "type": "string"
-            }],
-            "get": {
-                "tags": [
-                    "Partner"
-                ],
-                "description": "get partner by name",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Partners list",
-                        "schema": {
-                            "$ref": "#/definitions/partners"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/updateUserByAdmin/{uuid}": {
-            "put": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "description": "User with new values updated by uuid",
-                "parameters": [{
-                        "name": "uuid",
-                        "in": "path",
-                        "required": true,
-                        "description": "uuid of user that we want to find",
-                        "type": "string"
-                    },
-                    {
-                        "name": "user",
-                        "in": "body",
-                        "description": "User with new values of properties",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User is updated",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/verifyCard/{userAddress}": {
-            "put": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Users"
-                ],
-                "description": "verify card by card number",
-                "parameters": [{
-                    "name": "userAddress",
-                    "in": "path",
-                    "required": true,
-                    "description": "userAddress of admin that we want to find",
-                    "type": "string"
-                }, {
-                    "name": "user",
-                    "in": "body",
-                    "description": "Please fill required fields!",
-                    "schema": {
-                        "$ref": "#/definitions/verifyCard"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Card Found",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/register": {
-            "post": {
-                "tags": [
-                    "Admin"
-                ],
-                "description": "Create new Admin in system",
-                "parameters": [{
-                    "name": "admin",
-                    "in": "body",
-                    "description": "Admin that we want to create",
-                    "schema": {
-                        "$ref": "#/definitions/register"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New Admin is created",
-                        "schema": {
-                            "$ref": "#/definitions/register"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/addUserByPass": {
-            "post": {
-                "tags": [
-                    "Admin"
-                ],
-                "description": "Create new User in system",
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "Admin that we want to create",
-                    "schema": {
-                        "$ref": "#/definitions/User"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New User is created",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/login": {
-            "post": {
-                "tags": [
-                    "Admin"
-                ],
-                "description": "Create new admin in system",
-                "parameters": [{
-                    "name": "admin",
-                    "in": "body",
-                    "description": "Admin that we want to create",
-                    "schema": {
-                        "$ref": "#/definitions/login"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New admin is created",
-                        "schema": {
-                            "$ref": "#/definitions/login"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/forgotPasswordLink": {
-            "post": {
-                "tags": [
-                    "Admin"
-                ],
-                "description": "Forgot Password Link",
-                "parameters": [{
-                    "name": "admin",
-                    "in": "body",
-                    "description": "Forgot Password Link",
-                    "schema": {
-                        "$ref": "#/definitions/sendEmailLink"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Forgot Password Link Sent",
-                        "schema": {
-                            "$ref": "#/definitions/sendEmailLink"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/getAllPartners": {
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Partner"
-                ],
-                "description": "get all partners",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Partners list",
-                        "schema": {
-                            "$ref": "#/definitions/partners"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/partnerById/{id}": {
-            "parameters": [{
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "partner ID",
-                "type": "string"
-            }],
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Partner"
-                ],
-                "description": "get partner by id",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Partners list",
-                        "schema": {
-                            "$ref": "#/definitions/partners"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/createPartner": {
-            "parameters": [ {
-                "name": "partner",
-                "in": "body",
-                "description": "Partner with new values of properties",
-                "schema": {
-                    "$ref": "#/definitions/partner"
-                }
-            }],
-            "post": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Partner"
-                ],
-                "description": "create new partner",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Partners list",
-                        "schema": {
-                            "$ref": "#/definitions/partners"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/updatePartner/{id}": {
-            "parameters": [ {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "partner ID",
-                "type": "string"
-            },{
-                "name": "partner",
-                "in": "body",
-                "description": "Partner with new values of properties",
-                "schema": {
-                    "$ref": "#/definitions/partner"
-                }
-            }],
-            "put": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Partner"
-                ],
-                "description": "update  partner",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "updated partner",
-                        "schema": {
-                            "$ref": "#/definitions/partners"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/deletePartner/{id}": {
-            "parameters": [ {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "partner ID",
-                "type": "string"
-            }],
-            "delete": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Partner"
-                ],
-                "description": "delete partner",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "deleted successfully",
-                        "schema": {
-                            "$ref": "#/definitions/partners"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/getAllAdmins": {
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                },
-                "produces": [
-                    "application/json"
-                ]
-            }
-        },
-        "/admin/getAllUsers": {
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                },
-                "produces": [
-                    "application/json"
-                ]
-            }
-        },
-        "/admin/cardapplyAndWhitelist/{userAddress}": {
-            "parameters": [{
-                "name": "userAddress",
-                "in": "path",
-                "required": true,
-                "description": "Email of user that we want to find",
-                "type": "string"
-            }],
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Card applied",
-                        "schema": {
-                            "$ref": "#/definitions/cardApplied"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/getOne/{email}": {
-            "parameters": [{
-                "name": "email",
-                "in": "path",
-                "required": true,
-                "description": "Email of admin that we want to find",
-                "type": "string"
-            }],
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Admin is found",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/updateBSCDetails/{userAddress}": {
-            "parameters": [{
-                    "name": "userAddress",
-                    "in": "path",
-                    "required": true,
-                    "description": "userAddress of admin that we want to find",
-                    "type": "string"
-                },
-                {
-                    "name": "admin",
-                    "in": "body",
-                    "description": "Admin with new values of properties",
-                    "schema": {
-                        "$ref": "#/definitions/BSCDetails"
-                    }
-                }
-            ],
-            "put": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Admin is found",
-                        "schema": {
-                            "$ref": "#/definitions/BSCDetails"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/createBSC": {
-            "parameters": [{
-                "name": "admin",
-                "in": "body",
-                "description": "Admin with new values of properties",
-                "schema": {
-                    "$ref": "#/definitions/createBSC"
-                }
-            }],
-            "post": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Admin is found",
-                        "schema": {
-                            "$ref": "#/definitions/createBSC"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/forgotPassword/{email}": {
-            "parameters": [{
-                "name": "email",
-                "in": "path",
-                "required": true,
-                "description": "Email of admin that we want to find",
-                "type": "string"
-            }],
-            "put": {
-                "tags": [
-                    "Admin"
-                ],
-                "parameters": [{
-                    "name": "admin",
-                    "in": "body",
-                    "description": "Admin with new values of properties",
-                    "schema": {
-                        "$ref": "#/definitions/forgot_password"
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Admin is updated",
-                        "schema": {
-                            "$ref": "#/definitions/forgot_password"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/updateUser-status/{userAddress}": {
-            "put": {
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "required": true,
-                        "description": "update user status",
-                        "type": "string"
-                    },
-                    {
-                        "name": "status",
-                        "in": "body",
-                        "required": true,
-                        "description": "N.A,PDF downloaded,Pending Payment",
-                        "schema": {
-                            "$ref": "#/definitions/updateStatus"
-                        }
-                    }
-                ],
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200"
-
-                    }
-                }
-            }
-        },
-        "/admin/cardStatus/{userAddress}": {
-            "put": {
-                "parameters": [{
-                        "name": "email",
-                        "in": "path",
-                        "required": true,
-                        "description": "update user status",
-                        "type": "string"
-                    },
-                    {
-                        "name": "status",
-                        "in": "body",
-                        "required": true,
-                        "description": "Activated, Rejected",
-                        "schema": {
-                            "$ref": "#/definitions/updateStatus"
-                        }
-                    }
-                ],
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200"
-
-                    }
-                }
-            }
-        },
-        "/admin/downloadCard1/{userAddress}": {
-            "parameters": [{
-                "name": "userAddress",
-                "in": "path",
-                "required": true,
-                "description": "userAddress of user for download card",
-                "type": "string"
-            }],
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Card 1 Download",
-                        "schema": {
-                            "$ref": "#/definitions/Card"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/downloadAllPDFs/{userAddress}": {
-            "parameters": [{
-                "name": "userAddress",
-                "in": "path",
-                "required": true,
-                "description": "userAddress of user for download card",
-                "type": "string"
-            }],
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Card 1 Download",
-                        "schema": {
-                            "$ref": "#/definitions/Card"
-                        }
-                    }
-                }
-            }
-        },
-        "/admin/downloadCard2/{userAddress}": {
-            "parameters": [{
-                "name": "userAddress",
-                "in": "path",
-                "required": true,
-                "description": "userAddress of user for download card",
-                "type": "string"
-            }],
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Card 2 Download",
-                        "schema": {
-                            "$ref": "#/definitions/Card"
-                        }
-                    }
-                }
-            }
-        },
-        "/superAdmin/login": {
-            "post": {
-                "tags": [
-                    "SuperAdmin"
-                ],
-                "description": "Login",
-                "parameters": [{
-                    "name": "superAdmin",
-                    "in": "body",
-                    "description": "SuperAdmin want to login",
-                    "schema": {
-                        "$ref": "#/definitions/login"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Login Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/login"
-                        }
-                    }
-                }
-            }
-        },
-        "/superAdmin/getOne/{email}": {
-            "parameters": [{
-                "name": "email",
-                "in": "path",
-                "required": true,
-                "description": "Email of admin that we want to find",
-                "type": "string"
-            }],
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "SuperAdmin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "SuperAdmin is found",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/applyForCard": {
-            "put": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Users"
-                ],
-                "description": "Apply For Card",
-                "parameters": [{
-                    "name": "users",
-                    "in": "body",
-                    "description": "Apply For Card",
-                    "schema": {
-                        "$ref": "#/definitions/Card"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Card Applied Successfully",
-                        "schema": {
-                            "$ref": "#/definitions/Card"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/walletAmount": {
-            "get": {
-                "security": [{ "Bearer": [] }],
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                    "name": "userAddress",
-                    "in": "path",
-                    "description": "Please fill the data",
-                    "schema": {
-                        "$ref": "#/definitions/userAddress"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/Wallet"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/walletBalance/{userAddress}": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                    "name": "userAddress",
-                    "in": "path",
-                    "description": "Please fill the data",
-                    "schema": {
-                        "$ref": "#/definitions/walletBalance"
-                    }
-                }],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/walletBalance"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/whiteList": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/whiteList"
-                        }
-                    },
-                    {
-                        "name": "email",
-                        "in": "path",
-                        "description": "please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/whiteList"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/whiteList"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateBTCB": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateBTCB"
-                        }
-                    },
-                    {
-                        "name": "btcb",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateBTCB"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateBTCB"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateETH": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateETH"
-                        }
-                    },
-                    {
-                        "name": "eth",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateETH"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateETH"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateBUSD": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateBUSD"
-                        }
-                    },
-                    {
-                        "name": "busd",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateBUSD"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateBUSD"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/getBSCDetails": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/GetBSCDetails"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateBNB": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateBNB"
-                        }
-                    },
-                    {
-                        "name": "bnb",
-                        "in": "path",
-                        "description": "please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateBNB"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateBNB"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateUSDC": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateUSDC"
-                        }
-                    },
-                    {
-                        "name": "usdc",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateUSDC"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateUSDC"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateCake": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateCake"
-                        }
-                    },
-                    {
-                        "name": "cake",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateCake"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateCake"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateALPACA": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateALPACA"
-                        }
-                    },
-                    {
-                        "name": "alpaca",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateALPACA"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateALPACA"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateXVS": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateXVS"
-                        }
-                    },
-                    {
-                        "name": "XVS",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateXVS"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateXVS"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateMDX": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateMDX"
-                        }
-                    },
-                    {
-                        "name": "mdx",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateMDX"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateMDX"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateAUTO": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateAUTO"
-                        }
-                    },
-                    {
-                        "name": "auto",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateAUTO"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateAUTO"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateMBOX": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateMBOX"
-                        }
-                    },
-                    {
-                        "name": "mbox",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateMBOX"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateMBOX"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateUSDT": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateUSDT"
-                        }
-                    },
-                    {
-                        "name": "usdt",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateUSDT"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateUSDT"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateEPS": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Please fill the data",
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateEPS"
-                        }
-                    },
-                    {
-                        "name": "eps",
-                        "in": "path",
-                        "description": "Please fill the data",
-                        "schema": {
-                            "$ref": "#/definitions/updateEPS"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "schema": {
-                            "$ref": "#/definitions/updateEPS"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/updateaffiliate/{userAddress}": {
-            "put": {
-                "parameters": [{
-                        "name": "userAddress",
-                        "in": "path",
-                        "required": true,
-                        "description": "update user affiliate",
-                        "type": "string"
-                    },
-                    {
-                        "name": "status",
-                        "in": "body",
-                        "required": true,
-                        "description": "true or false",
-                        "schema": {
-                            "$ref": "#/definitions/updateAffiliate"
-                        }
-                    }
-                ],
-               
-                "tags": [
-                    "Users"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200"
-    
-                    }
-                }
-            }
-        },
-        "/users/getDepositAddress": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Check data",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sucecessfull",
-                        "schema": {
-                            "$ref": "#/definitions/getDepositAddress"
-                        }
-                    }
-                }
-            }
+    "/admin/createBSC": {
+      "parameters": [
+        {
+          "name": "admin",
+          "in": "body",
+          "description": "Admin with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/createBSC"
+          }
         }
+      ],
+      "post": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "Admin is found",
+            "schema": {
+              "$ref": "#/definitions/createBSC"
+            }
+          }
+        }
+      }
     },
-   
-    "definitions": {
-        "login": {
-            "required": [
-                "email",
-                "password"
-            ],
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
+    "/admin/forgotPassword/{email}": {
+      "parameters": [
+        {
+          "name": "email",
+          "in": "path",
+          "required": true,
+          "description": "Email of admin that we want to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "tags": ["Admin"],
+        "parameters": [
+          {
+            "name": "admin",
+            "in": "body",
+            "description": "Admin with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/forgot_password"
             }
-        },
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin is updated",
+            "schema": {
+              "$ref": "#/definitions/forgot_password"
+            }
+          }
+        }
+      }
+    },
+    "/admin/updateUser-status/{userAddress}": {
+      "put": {
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "required": true,
+            "description": "update user status",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "body",
+            "required": true,
+            "description": "N.A,PDF downloaded,Pending Payment",
+            "schema": {
+              "$ref": "#/definitions/updateStatus"
+            }
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "200"
+          }
+        }
+      }
+    },
+    "/admin/cardStatus/{userAddress}": {
+      "put": {
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "update user status",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "body",
+            "required": true,
+            "description": "Activated, Rejected",
+            "schema": {
+              "$ref": "#/definitions/updateStatus"
+            }
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "200"
+          }
+        }
+      }
+    },
+    "/admin/downloadCard1/{userAddress}": {
+      "parameters": [
+        {
+          "name": "userAddress",
+          "in": "path",
+          "required": true,
+          "description": "userAddress of user for download card",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "Card 1 Download",
+            "schema": {
+              "$ref": "#/definitions/Card"
+            }
+          }
+        }
+      }
+    },
+    "/admin/downloadAllPDFs/{userAddress}": {
+      "parameters": [
+        {
+          "name": "userAddress",
+          "in": "path",
+          "required": true,
+          "description": "userAddress of user for download card",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "Card 1 Download",
+            "schema": {
+              "$ref": "#/definitions/Card"
+            }
+          }
+        }
+      }
+    },
+    "/admin/downloadCard2/{userAddress}": {
+      "parameters": [
+        {
+          "name": "userAddress",
+          "in": "path",
+          "required": true,
+          "description": "userAddress of user for download card",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Admin"],
+        "responses": {
+          "200": {
+            "description": "Card 2 Download",
+            "schema": {
+              "$ref": "#/definitions/Card"
+            }
+          }
+        }
+      }
+    },
+    "/superAdmin/login": {
+      "post": {
+        "tags": ["SuperAdmin"],
+        "description": "Login",
+        "parameters": [
+          {
+            "name": "superAdmin",
+            "in": "body",
+            "description": "SuperAdmin want to login",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Login Successfull",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        }
+      }
+    },
+    "/superAdmin/getOne/{email}": {
+      "parameters": [
+        {
+          "name": "email",
+          "in": "path",
+          "required": true,
+          "description": "Email of admin that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["SuperAdmin"],
+        "responses": {
+          "200": {
+            "description": "SuperAdmin is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/applyForCard": {
+      "put": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Users"],
+        "description": "Apply For Card",
+        "parameters": [
+          {
+            "name": "users",
+            "in": "body",
+            "description": "Apply For Card",
+            "schema": {
+              "$ref": "#/definitions/Card"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Card Applied Successfully",
+            "schema": {
+              "$ref": "#/definitions/Card"
+            }
+          }
+        }
+      }
+    },
+    "/users/walletAmount": {
+      "get": {
+        "security": [{ "Bearer": [] }],
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/userAddress"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/Wallet"
+            }
+          }
+        }
+      }
+    },
+    "/users/walletBalance/{userAddress}": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/walletBalance"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/walletBalance"
+            }
+          }
+        }
+      }
+    },
+    "/users/whiteList": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "please fill the data",
+            "schema": {
+              "$ref": "#/definitions/whiteList"
+            }
+          },
+          {
+            "name": "email",
+            "in": "path",
+            "description": "please fill the data",
+            "schema": {
+              "$ref": "#/definitions/whiteList"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/whiteList"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateBTCB": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateBTCB"
+            }
+          },
+          {
+            "name": "btcb",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateBTCB"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateBTCB"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateETH": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateETH"
+            }
+          },
+          {
+            "name": "eth",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateETH"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateETH"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateBUSD": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateBUSD"
+            }
+          },
+          {
+            "name": "busd",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateBUSD"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateBUSD"
+            }
+          }
+        }
+      }
+    },
+    "/users/getBSCDetails": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/GetBSCDetails"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateBNB": {
+      "get": {
+        "tags": ["Users"],
+        "description": "please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateBNB"
+            }
+          },
+          {
+            "name": "bnb",
+            "in": "path",
+            "description": "please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateBNB"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateBNB"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateUSDC": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateUSDC"
+            }
+          },
+          {
+            "name": "usdc",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateUSDC"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateUSDC"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateCake": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateCake"
+            }
+          },
+          {
+            "name": "cake",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateCake"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateCake"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateALPACA": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateALPACA"
+            }
+          },
+          {
+            "name": "alpaca",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateALPACA"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateALPACA"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateXVS": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateXVS"
+            }
+          },
+          {
+            "name": "XVS",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateXVS"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateXVS"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateMDX": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateMDX"
+            }
+          },
+          {
+            "name": "mdx",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateMDX"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateMDX"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateAUTO": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateAUTO"
+            }
+          },
+          {
+            "name": "auto",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateAUTO"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateAUTO"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateMBOX": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateMBOX"
+            }
+          },
+          {
+            "name": "mbox",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateMBOX"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateMBOX"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateUSDT": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateUSDT"
+            }
+          },
+          {
+            "name": "usdt",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateUSDT"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateUSDT"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateEPS": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Please fill the data",
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateEPS"
+            }
+          },
+          {
+            "name": "eps",
+            "in": "path",
+            "description": "Please fill the data",
+            "schema": {
+              "$ref": "#/definitions/updateEPS"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/updateEPS"
+            }
+          }
+        }
+      }
+    },
+    "/users/updateaffiliate/{userAddress}": {
+      "put": {
+        "parameters": [
+          {
+            "name": "userAddress",
+            "in": "path",
+            "required": true,
+            "description": "update user affiliate",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "body",
+            "required": true,
+            "description": "true or false",
+            "schema": {
+              "$ref": "#/definitions/updateAffiliate"
+            }
+          }
+        ],
 
-        "loginWithAddress": {
-            "required": [
-                "userAddress",
-                "partnerName"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "partnerName": {
-                    "type": "string"
-                }
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "200"
+          }
+        }
+      }
+    },
+    "/users/getDepositAddress": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Check data",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Sucecessfull",
+            "schema": {
+              "$ref": "#/definitions/getDepositAddress"
             }
-        },
-        "cardPayment": {
-            "required": [
-                "cardStatus"
-            ],
-            "properties": {
-                "cardStatus":{
-                    "type": "string"
-                }
-               
-            }
-        },
+          }
+        }
+      }
+    }
+  },
 
-        "register": {
-            "required": [
-                "email",
-                "password",
-                "OTP"
-            ],
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "OTP": {
-                    "type": "number"
-                }
-            }
+  "definitions": {
+    "login": {
+      "required": ["email", "password"],
+      "properties": {
+        "email": {
+          "type": "string"
         },
-        "changePassword": {
-            "required": [
-                "email",
-                "password",
-                "OTP"
-            ],
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "OTP": {
-                    "type": "number"
-                }
-            }
-        },
-        "otp": {
-            "required": [
-                "email"
-            ],
-            "properties": {
-                "email": {
-                    "type": "string"
-                }
-            }
-        },
-        "forgot_password": {
-            "required": [
-                "password"
-            ],
-            "properties": {
-                "password": {
-                    "type": "string"
-                }
-            }
-        },
-        "sendEmailLink": {
-            "required": [
-                "email"
-            ],
-            "properties": {
-                "email": {
-                    "type": "string"
-                }
-            }
-        },
-        "updateStatus": {
-            "required": [
-                "status"
-            ],
-            "properties": {
-                "status": {
-                    "type": "string"
-                }
+        "password": {
+          "type": "string"
+        }
+      }
+    },
 
-            }
+    "loginWithAddress": {
+      "required": ["userAddress", "partnerName"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
         },
-        "cardApplied": {
-            "required": [
-                "card_applied",
-                "address",
-                "jdbCardNumber1"
-            ],
-            "properties": {
-                "card_applied": {
-                    "type": "string"
-                },
-                "address": {
-                    "type": "string"
-                },
-                "jdbCardNumber1": {
-                    "type": "string"
-                }
+        "partnerName": {
+          "type": "string"
+        }
+      }
+    },
+    "cardPayment": {
+      "required": ["cardStatus"],
+      "properties": {
+        "cardStatus": {
+          "type": "string"
+        }
+      }
+    },
 
-            }
+    "register": {
+      "required": ["email", "password", "OTP"],
+      "properties": {
+        "email": {
+          "type": "string"
         },
-        "Card": {
-            "required": [
-                "title",
-                "id_type",
-                "id_no",
-                "id_issued_date",
-                "gender",
-                "marital_status",
-                "mailing_address_line_1",
-                "passport_expiry_date",
-                "emergency_contact_person",
-                "emergency_contact_telephone_number",
-                "place_of_id_issued",
-                "first_name",
-                "last_name",
-                "contactNumber",
-                "dob",
-                "userAddress",
-                "card_email",
-                "card_type",
-                "address1",
-                "state",
-                "pincode",
-                "city",
-                "countryName",
-                "nationality",
-                "passport_id",
-                "img_sign",
-                "passport_file_signature",
-                "passport_file_signature_biopic",
-                "residence_city",
-                "residence_countryName",
-                "residence_pincode",
-                "residence_state",
-                "countryCode",
-                "emergencycountryCode"
-            ],
-            "properties": {
-                "title": {
-                    "type": "string"
-                },
-                "id_type": {
-                    "type": "string"
-                },
-                "id_no": {
-                    "type": "string"
-                },
-                "id_issued_date": {
-                    "type": "string"
-                },
-                "gender": {
-                    "type": "string"
-                },
-                "marital_status": {
-                    "type": "string"
-                },
-                "mailing_address_line_1": {
-                    "type": "string"
-                },
-                "emergency_contact_person": {
-                    "type": "string"
-                },
-                "emergency_contact_telephone_number": {
-                    "type": "number"
-                },
-                "place_of_id_issued": {
-                    "type": "string"
-                },
-                "passport_expiry_date": {
-                    "type": "string"
-                },
-                "first_name": {
-                    "type": "string"
-                },
-                "last_name": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "card_email": {
-                    "type": "string"
-                },
-                "card_type": {
-                    "type": "string"
-                },
-                "dob": {
-                    "type": "string"
-                },
-                "nationality": {
-                    "type": "string"
-                },
-                "passport_id": {
-                    "type": "string"
-                },
-                "contactNumber": {
-                    "type": "number"
-                },
-                "countryName": {
-                    "type": "string"
-                },
-                "address1": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "pincode": {
-                    "type": "number"
-                },
-                "img_sign": {
-                    "type": "string"
-                },
-                "passport_file_signature": {
-                    "type": "string"
-                },
-                "passport_file_signature_biopic": {
-                    "type": "string"
-                },
-                "residence_city": {
-                    "type": "string"
-                },
-                "residence_countryName": {
-                    "type": "string"
-                },
-                "residence_pincode": {
-                    "type": "string"
-                },
-                "residence_state": {
-                    "type": "string"
-                },
-                "countryCode":{
-                    "type":"integer"
-                },
-                "emergencycountryCode":{
-                    "type":"integer"
-                }
-            }
+        "password": {
+          "type": "string"
         },
-        "User": {
-            "required": [
-                "id",
-                "first_name",
-                "last_name",
-                "email",
-                "card_email",
-                "card_img",
-                "email_verified_at",
-                "dob",
-                "nationality",
-                "passport_id",
-                "maiden_name",
-                "pep",
-                "contactNumber",
-                "password",
-                "status",
-                "remember_token",
-                "created_at",
-                "updated_at",
-                "countryCode",
-                "cardNumber",
-                "jdbCardNumber1",
-                "jdbCardNumber2",
-                "cardStatus",
-                "jdbCardStatus1",
-                "jdbCardStatus2",
-                "google2fa_enable",
-                "google2fa_secret",
-                "google2fa_qr",
-                "countryName",
-                "cardCount",
-                "appid",
-                "is_kyc_approved",
-                "kycres",
-                "balance_usd",
-                "balance_btc",
-                "balance_eth",
-                "address1",
-                "address2",
-                "city",
-                "state",
-                "pincode",
-                "d_country",
-                "inspectionId",
-                "deleted_at",
-                "urnNumber",
-                "jdbAccountNo1",
-                "jdbAccountNo2",
-                "is_kyc_details",
-                "vendor_id",
-                "img_sign",
-                "partner_fee",
-                "company_name",
-                "card_applied",
-                "is_doc_downloaded",
-                "kyc_country",
-                "response_check",
-                "passport_file_signature",
-                "passport_file_signature_biopic",
-                "suspended",
-                "suspended_reason",
-                "affiliate",
-                "emergencycountryCode"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "first_name": {
-                    "type": "string"
-                },
-                "last_name": {
-                    "type": "string"
-                },
-                "userAddress": {
-                    "type": "string"
-                },
-                "email_verified_at": {
-                    "type": "string"
-                },
-                "dob": {
-                    "type": "string"
-                },
-                "nationality": {
-                    "type": "string"
-                },
-                "passport_id": {
-                    "type": "string"
-                },
-                "maiden_name": {
-                    "type": "string"
-                },
-                "pep": {
-                    "type": "string"
-                },
-                "contactNumber": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "array",
-                    "item": "['pending', 'active', 'deactive']"
-                },
-                "remember_token": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "countryCode": {
-                    "type": "integer"
-                },
-                "cardNumber": {
-                    "type": "string"
-                },
-                "jdbCardNumber1": {
-                    "type": "string"
-                },
-                "jdbCardNumber2": {
-                    "type": "string"
-                },
-                "cardStatus": {
-                    "type": "array",
-                    "item": "['unpaid','paid','pending','assigned','verified','blocked']"
-                },
-                "jdbCardStatus1": {
-                    "type": "array",
-                    "item": "['unpaid','paid','pending','assigned','verified','blocked']"
-                },
-                "jdbCardStatus2": {
-                    "type": "array",
-                    "item": "['unpaid','paid','pending','assigned','verified','blocked']"
-                },
-                "google2fa_enable": {
-                    "type": "integer"
-                },
-                "google2fa_secret": {
-                    "type": "string"
-                },
-                "google2fa_qr": {
-                    "type": "string"
-                },
-                "countryName": {
-                    "type": "string"
-                },
-                "cardCount": {
-                    "type": "integer"
-                },
-                "appid": {
-                    "type": "string"
-                },
-                "is_kyc_approved": {
-                    "type": "array",
-                    "item": "['0','1']"
-                },
-                "kycres": {
-                    "type": "string"
-                },
-                "balance_usd": {
-                    "type": "string"
-                },
-                "balance_btc": {
-                    "type": "string"
-                },
-                "balance_eth": {
-                    "type": "string"
-                },
-                "address1": {
-                    "type": "string"
-                },
-                "address2": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "pincode": {
-                    "type": "string"
-                },
-                "d_country": {
-                    "type": "string"
-                },
-                "inspectionId": {
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "type": "string"
-                },
-                "urnNumber": {
-                    "type": "string"
-                },
-                "jdbAccountNo1": {
-                    "type": "string"
-                },
-                "jdbAccountNo2": {
-                    "type": "string"
-                },
-                "is_kyc_details": {
-                    "type": "array",
-                    "item": "['0','1']"
-                },
-                "vendor_id": {
-                    "type": "integer"
-                },
-                "img_sign": {
-                    "type": "string"
-                },
-                "partner_fee": {
-                    "type": "string"
-                },
-                "company_name": {
-                    "type": "string"
-                },
-                "card_applied": {
-                    "type": "integer"
-                },
-                "is_doc_downloaded": {
-                    "type": "integer"
-                },
-                "kyc_country": {
-                    "type": "string"
-                },
-                "response_check": {
-                    "type": "string"
-                },
-                "passport_file_signature": {
-                    "type": "string"
-                },
-                "passport_file_signature_biopic": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "type": "number"
-                },
-                "suspended_reason": {
-                    "type": "string"
-                },
-                "card_email": {
-                    "type": "string"
-                },
-                "card_img": {
-                    "type": "string"
-                },
-                "affiliate":{
-                    "type": "boolean"
-                },
-                "emergencycountryCode":{
-                    "type":"integer"
-                }
-            }
+        "OTP": {
+          "type": "number"
+        }
+      }
+    },
+    "changePassword": {
+      "required": ["email", "password", "OTP"],
+      "properties": {
+        "email": {
+          "type": "string"
         },
-        "verifyCard": {
-            "required": [
-                "jdbCardNumber1",
-                "card_img",
-                "card_activated"
-            ],
-            "properties": {
-                "jdbCardNumber1": {
-                    "type": "string"
-                },
-                "card_img": {
-                    "type": "string"
-                },
-                "card_activated": {
-                    "type": "number"
-                }
-            }
+        "password": {
+          "type": "string"
         },
-        "updateAffiliate":{
-            "required": [
-                "affiliate"
-            ],
-            "properties": {
-                "affiliate": {
-                    "type": "boolean"
-                    
-                }
-
-            }
+        "OTP": {
+          "type": "number"
+        }
+      }
+    },
+    "otp": {
+      "required": ["email"],
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "forgot_password": {
+      "required": ["password"],
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "sendEmailLink": {
+      "required": ["email"],
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "updateStatus": {
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "cardApplied": {
+      "required": ["card_applied", "address", "jdbCardNumber1"],
+      "properties": {
+        "card_applied": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "jdbCardNumber1": {
+          "type": "string"
+        }
+      }
+    },
+    "Card": {
+      "required": [
+        "title",
+        "id_type",
+        "id_no",
+        "id_issued_date",
+        "gender",
+        "marital_status",
+        "mailing_address_line_1",
+        "passport_expiry_date",
+        "emergency_contact_person",
+        "emergency_contact_telephone_number",
+        "place_of_id_issued",
+        "first_name",
+        "last_name",
+        "contactNumber",
+        "dob",
+        "userAddress",
+        "card_email",
+        "card_type",
+        "address1",
+        "state",
+        "pincode",
+        "city",
+        "countryName",
+        "nationality",
+        "passport_id",
+        "img_sign",
+        "passport_file_signature",
+        "passport_file_signature_biopic",
+        "residence_city",
+        "residence_countryName",
+        "residence_pincode",
+        "residence_state",
+        "countryCode",
+        "emergencycountryCode"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "id_type": {
+          "type": "string"
+        },
+        "id_no": {
+          "type": "string"
+        },
+        "id_issued_date": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "marital_status": {
+          "type": "string"
+        },
+        "mailing_address_line_1": {
+          "type": "string"
+        },
+        "emergency_contact_person": {
+          "type": "string"
+        },
+        "emergency_contact_telephone_number": {
+          "type": "number"
+        },
+        "place_of_id_issued": {
+          "type": "string"
+        },
+        "passport_expiry_date": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "card_email": {
+          "type": "string"
+        },
+        "card_type": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string"
+        },
+        "nationality": {
+          "type": "string"
+        },
+        "passport_id": {
+          "type": "string"
+        },
+        "contactNumber": {
+          "type": "number"
+        },
+        "countryName": {
+          "type": "string"
+        },
+        "address1": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "pincode": {
+          "type": "number"
+        },
+        "img_sign": {
+          "type": "string"
+        },
+        "passport_file_signature": {
+          "type": "string"
+        },
+        "passport_file_signature_biopic": {
+          "type": "string"
+        },
+        "residence_city": {
+          "type": "string"
+        },
+        "residence_countryName": {
+          "type": "string"
+        },
+        "residence_pincode": {
+          "type": "string"
+        },
+        "residence_state": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "integer"
+        },
+        "emergencycountryCode": {
+          "type": "integer"
+        }
+      }
+    },
+    "User": {
+      "required": [
+        "id",
+        "first_name",
+        "last_name",
+        "email",
+        "card_email",
+        "card_img",
+        "email_verified_at",
+        "dob",
+        "nationality",
+        "passport_id",
+        "maiden_name",
+        "pep",
+        "contactNumber",
+        "password",
+        "status",
+        "remember_token",
+        "created_at",
+        "updated_at",
+        "countryCode",
+        "cardNumber",
+        "jdbCardNumber1",
+        "jdbCardNumber2",
+        "cardStatus",
+        "jdbCardStatus1",
+        "jdbCardStatus2",
+        "google2fa_enable",
+        "google2fa_secret",
+        "google2fa_qr",
+        "countryName",
+        "cardCount",
+        "appid",
+        "is_kyc_approved",
+        "kycres",
+        "balance_usd",
+        "balance_btc",
+        "balance_eth",
+        "address1",
+        "address2",
+        "city",
+        "state",
+        "pincode",
+        "d_country",
+        "inspectionId",
+        "deleted_at",
+        "urnNumber",
+        "jdbAccountNo1",
+        "jdbAccountNo2",
+        "is_kyc_details",
+        "vendor_id",
+        "img_sign",
+        "partner_fee",
+        "company_name",
+        "card_applied",
+        "is_doc_downloaded",
+        "kyc_country",
+        "response_check",
+        "passport_file_signature",
+        "passport_file_signature_biopic",
+        "suspended",
+        "suspended_reason",
+        "affiliate",
+        "emergencycountryCode"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
         },
         "userAddress": {
-            "required": [
-                "userAddress"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                }
-            }
+          "type": "string"
         },
-        "whiteList": {
-            "required": [
-                "userAddress",
-                "email"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                }
-            }
+        "email_verified_at": {
+          "type": "string"
         },
-        "updateBTCB": {
-            "required": [
-                "userAddress",
-                "btcb"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "btcb": {
-                    "type": "string"
-                }
-            }
+        "dob": {
+          "type": "string"
         },
-        "partners": {
-            "required": [
-                "id",
-                "partner_name"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "partner_name": {
-                    "type": "string"
-                },
-                "partner_otc": {
-                    "type": "string"
-                },
-                "prv_otc": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                }
-            }
+        "nationality": {
+          "type": "string"
         },
-        "partner": {
-            "required": [
-                "partnerName"
-            ],
-            "properties": {
-               
-                "partnerName": {
-                    "type": "string"
-                },
-                "partnerOtc": {
-                    "type": "string"
-                },
-                "prvOtc": {
-                    "type": "string"
-                }
-                
-            }
+        "passport_id": {
+          "type": "string"
         },
-        "walletBalance": {
-            "required": [
-                "userAddress"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                }
-            }
+        "maiden_name": {
+          "type": "string"
         },
-        "updateETH": {
-            "required": [
-                "userAddress",
-                "eth"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "eth": {
-                    "type": "string"
-                }
-            }
+        "pep": {
+          "type": "string"
         },
-        "updateBUSD": {
-            "required": [
-                "userAddress",
-                "busd"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "busd": {
-                    "type": "string"
-                }
-            }
+        "contactNumber": {
+          "type": "string"
         },
-        "updateBNB": {
-            "required": [
-                "userAddress",
-                "USDC"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "USDC": {
-                    "type": "string"
-                }
-            }
+        "password": {
+          "type": "string"
         },
-        "updateCake": {
-            "required": [
-                "userAddress",
-                "Cake"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "Cake": {
-                    "type": "string"
-                }
-            }
+        "status": {
+          "type": "array",
+          "item": "['pending', 'active', 'deactive']"
         },
-        "updateALPACA": {
-            "required": [
-                "userAddress",
-                "ALPACA"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "ALPACA": {
-                    "type": "string"
-                }
-            }
+        "remember_token": {
+          "type": "string"
         },
-        "updateXVS": {
-            "required": [
-                "userAddress",
-                "bnb"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "XVS": {
-                    "type": "string"
-                }
-            }
+        "created_at": {
+          "type": "string"
         },
-        "updateMDX": {
-            "required": [
-                "userAddress",
-                "MDX"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "MDX": {
-                    "type": "string"
-                }
-            }
+        "updated_at": {
+          "type": "string"
         },
-        "updateAUTO": {
-            "required": [
-                "userAddress",
-                "AUTO"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "AUTO": {
-                    "type": "string"
-                }
-            }
+        "countryCode": {
+          "type": "integer"
         },
-        "updateMBOX": {
-            "required": [
-                "userAddress",
-                "MBOX"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "MBOX": {
-                    "type": "string"
-                }
-            }
+        "cardNumber": {
+          "type": "string"
         },
-        "updateUSDT": {
-            "required": [
-                "userAddress",
-                "USDT"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "USDT": {
-                    "type": "string"
-                }
-            }
+        "jdbCardNumber1": {
+          "type": "string"
         },
-        "updateEPS": {
-            "required": [
-                "userAddress",
-                "EPS"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "EPS": {
-                    "type": "string"
-                }
-            }
+        "jdbCardNumber2": {
+          "type": "string"
         },
-        "updateUSDC": {
-            "required": [
-                "userAddress",
-                "USDC"
-            ],
-            "properties": {
-                "userAddress": {
-                    "type": "string"
-                },
-                "USDC": {
-                    "type": "string"
-                }
-            }
+        "cardStatus": {
+          "type": "array",
+          "item": "['unpaid','paid','pending','assigned','verified','blocked']"
         },
-        "BSCDetails": {
-            "required": [
-                "card_load_fee",
-                "bsc_token_otc_percentage",
-                "bsc_token_otc_options",
-                "bsc_stables_otc_per",
-                "bsc_stables_otc_options",
-                "updatedAt"
-            ],
-            "properties": {
-                "card_load_fee": {
-                    "type": "string"
-                },
-                "bsc_token_otc_percentage": {
-                    "type": "string"
-                },
-                "bsc_token_otc_options": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "bsc_stables_otc_per": {
-                    "type": "string"
-                },
-                "bsc_stables_otc_options": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
+        "jdbCardStatus1": {
+          "type": "array",
+          "item": "['unpaid','paid','pending','assigned','verified','blocked']"
         },
-        "createBSC": {
-            "required": [
-                "userAddress",
-                "card_load_fee",
-                "bsc_token_otc_percentage",
-                "bsc_token_otc_options",
-                "bsc_stables_otc_per",
-                "bsc_stables_otc_options"
-            ],
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "card_load_fee": {
-                    "type": "string"
-                },
-                "bsc_token_otc_percentage": {
-                    "type": "string"
-                },
-                "bsc_token_otc_options": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "bsc_stables_otc_per": {
-                    "type": "string"
-                },
-                "bsc_stables_otc_options": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
+        "jdbCardStatus2": {
+          "type": "array",
+          "item": "['unpaid','paid','pending','assigned','verified','blocked']"
         },
-        "GetBSCDetails": {
-            "required": [
-                "id",
-                "userAddress",
-                "card_load_fee",
-                "bsc_token_otc_percentage",
-                "bsc_token_otc_options",
-                "bsc_stables_otc_per",
-                "bsc_stables_otc_options",
-                "updatedAt",
-                "createdAt"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "card_load_fee": {
-                    "type": "string"
-                },
-                "bsc_token_otc_percentage": {
-                    "type": "string"
-                },
-                "bsc_token_otc_options": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "bsc_stables_otc_per": {
-                    "type": "string"
-                },
-                "bsc_stables_otc_options": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "updatedAt": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                }
-            }
+        "google2fa_enable": {
+          "type": "integer"
+        },
+        "google2fa_secret": {
+          "type": "string"
+        },
+        "google2fa_qr": {
+          "type": "string"
+        },
+        "countryName": {
+          "type": "string"
+        },
+        "cardCount": {
+          "type": "integer"
+        },
+        "appid": {
+          "type": "string"
+        },
+        "is_kyc_approved": {
+          "type": "array",
+          "item": "['0','1']"
+        },
+        "kycres": {
+          "type": "string"
+        },
+        "balance_usd": {
+          "type": "string"
+        },
+        "balance_btc": {
+          "type": "string"
+        },
+        "balance_eth": {
+          "type": "string"
+        },
+        "address1": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "pincode": {
+          "type": "string"
+        },
+        "d_country": {
+          "type": "string"
+        },
+        "inspectionId": {
+          "type": "string"
+        },
+        "deleted_at": {
+          "type": "string"
+        },
+        "urnNumber": {
+          "type": "string"
+        },
+        "jdbAccountNo1": {
+          "type": "string"
+        },
+        "jdbAccountNo2": {
+          "type": "string"
+        },
+        "is_kyc_details": {
+          "type": "array",
+          "item": "['0','1']"
+        },
+        "vendor_id": {
+          "type": "integer"
+        },
+        "img_sign": {
+          "type": "string"
+        },
+        "partner_fee": {
+          "type": "string"
+        },
+        "company_name": {
+          "type": "string"
+        },
+        "card_applied": {
+          "type": "integer"
+        },
+        "is_doc_downloaded": {
+          "type": "integer"
+        },
+        "kyc_country": {
+          "type": "string"
+        },
+        "response_check": {
+          "type": "string"
+        },
+        "passport_file_signature": {
+          "type": "string"
+        },
+        "passport_file_signature_biopic": {
+          "type": "string"
+        },
+        "suspended": {
+          "type": "number"
+        },
+        "suspended_reason": {
+          "type": "string"
+        },
+        "card_email": {
+          "type": "string"
+        },
+        "card_img": {
+          "type": "string"
+        },
+        "affiliate": {
+          "type": "boolean"
+        },
+        "emergencycountryCode": {
+          "type": "integer"
         }
+      }
+    },
+    "verifyCard": {
+      "required": ["jdbCardNumber1", "card_img", "card_activated"],
+      "properties": {
+        "jdbCardNumber1": {
+          "type": "string"
+        },
+        "card_img": {
+          "type": "string"
+        },
+        "card_activated": {
+          "type": "number"
+        }
+      }
+    },
+    "updateAffiliate": {
+      "required": ["affiliate"],
+      "properties": {
+        "affiliate": {
+          "type": "boolean"
+        }
+      }
+    },
+    "userAddress": {
+      "required": ["userAddress"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        }
+      }
+    },
+    "whiteList": {
+      "required": ["userAddress", "email"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "updateBTCB": {
+      "required": ["userAddress", "btcb"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "btcb": {
+          "type": "string"
+        }
+      }
+    },
+    "partners": {
+      "required": ["id", "partner_name"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "partner_name": {
+          "type": "string"
+        },
+        "partner_otc": {
+          "type": "string"
+        },
+        "prv_otc": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "partner": {
+      "required": ["partnerName"],
+      "properties": {
+        "partnerName": {
+          "type": "string"
+        },
+        "partnerOtc": {
+          "type": "string"
+        },
+        "prvOtc": {
+          "type": "string"
+        }
+      }
+    },
+    "walletBalance": {
+      "required": ["userAddress"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        }
+      }
+    },
+    "updateETH": {
+      "required": ["userAddress", "eth"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "eth": {
+          "type": "string"
+        }
+      }
+    },
+    "updateBUSD": {
+      "required": ["userAddress", "busd"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "busd": {
+          "type": "string"
+        }
+      }
+    },
+    "updateBNB": {
+      "required": ["userAddress", "USDC"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "USDC": {
+          "type": "string"
+        }
+      }
+    },
+    "updateCake": {
+      "required": ["userAddress", "Cake"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "Cake": {
+          "type": "string"
+        }
+      }
+    },
+    "updateALPACA": {
+      "required": ["userAddress", "ALPACA"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "ALPACA": {
+          "type": "string"
+        }
+      }
+    },
+    "updateXVS": {
+      "required": ["userAddress", "bnb"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "XVS": {
+          "type": "string"
+        }
+      }
+    },
+    "updateMDX": {
+      "required": ["userAddress", "MDX"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "MDX": {
+          "type": "string"
+        }
+      }
+    },
+    "updateAUTO": {
+      "required": ["userAddress", "AUTO"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "AUTO": {
+          "type": "string"
+        }
+      }
+    },
+    "updateMBOX": {
+      "required": ["userAddress", "MBOX"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "MBOX": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUSDT": {
+      "required": ["userAddress", "USDT"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "USDT": {
+          "type": "string"
+        }
+      }
+    },
+    "updateEPS": {
+      "required": ["userAddress", "EPS"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "EPS": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUSDC": {
+      "required": ["userAddress", "USDC"],
+      "properties": {
+        "userAddress": {
+          "type": "string"
+        },
+        "USDC": {
+          "type": "string"
+        }
+      }
+    },
+    "BSCDetails": {
+      "required": [
+        "card_load_fee",
+        "bsc_token_otc_percentage",
+        "bsc_token_otc_options",
+        "bsc_stables_otc_per",
+        "bsc_stables_otc_options",
+        "updatedAt"
+      ],
+      "properties": {
+        "card_load_fee": {
+          "type": "string"
+        },
+        "bsc_token_otc_percentage": {
+          "type": "string"
+        },
+        "bsc_token_otc_options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bsc_stables_otc_per": {
+          "type": "string"
+        },
+        "bsc_stables_otc_options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "createBSC": {
+      "required": [
+        "userAddress",
+        "card_load_fee",
+        "bsc_token_otc_percentage",
+        "bsc_token_otc_options",
+        "bsc_stables_otc_per",
+        "bsc_stables_otc_options"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "card_load_fee": {
+          "type": "string"
+        },
+        "bsc_token_otc_percentage": {
+          "type": "string"
+        },
+        "bsc_token_otc_options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bsc_stables_otc_per": {
+          "type": "string"
+        },
+        "bsc_stables_otc_options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "GetBSCDetails": {
+      "required": [
+        "id",
+        "userAddress",
+        "card_load_fee",
+        "bsc_token_otc_percentage",
+        "bsc_token_otc_options",
+        "bsc_stables_otc_per",
+        "bsc_stables_otc_options",
+        "updatedAt",
+        "createdAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "card_load_fee": {
+          "type": "string"
+        },
+        "bsc_token_otc_percentage": {
+          "type": "string"
+        },
+        "bsc_token_otc_options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bsc_stables_otc_per": {
+          "type": "string"
+        },
+        "bsc_stables_otc_options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
     }
+  }
 }
