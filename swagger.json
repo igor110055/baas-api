@@ -10,8 +10,8 @@
     }
   },
 
-  "host": "localhost:5000",
-  "basePath": "",
+  "host": "backend.paymentplanet.co/",
+  "basePath": "api",
   "tags": [
     {
       "name": "Users",
