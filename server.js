@@ -63,9 +63,9 @@ function myAsyncAuthorizer(username, password) {
   return userMatches & passwordMatches;
 }
 
-app.use("/api/admin", require("./API/admin/admin.controller"));
-app.use("/api/users", require("./API/users/users.controller"));
-app.use("/api/superAdmin", require("./API/superAdmin/superAdmin.controller"));
+app.use("/admin", require("./API/admin/admin.controller"));
+app.use("/users", require("./API/users/users.controller"));
+app.use("/superAdmin", require("./API/superAdmin/superAdmin.controller"));
 app.use(
   "/api/applyForCard",
   require("./API/applyForcard/applyForCard.controller")
