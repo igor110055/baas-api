@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "version": "1.0.0",
-        "title": "PRV Backend",
+        "title": "Baas Backend",
         "description": "Node JS Backend V0.1",
         "license": {
             "name": "MIT",
@@ -10,7 +10,7 @@
         }
     },
   
-    "host": "localhost:5000/",
+    "host": "18.142.89.73:5000/",
     "basePath": "",
     "tags": [{
             "name": "Users",
